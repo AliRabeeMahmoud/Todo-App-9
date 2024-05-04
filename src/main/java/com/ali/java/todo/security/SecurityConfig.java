@@ -21,23 +21,11 @@ public class SecurityConfig {
 
     private final MyUserDetailService myUserDetailService;
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-
-        return myUserDetailService ;
-//        UserDetails user = User.builder()
-//                .username("user")
-//                .password(passwordEncoder.encode("user"))
-//                .roles("USER")
-//                .build();
+//    @Bean
+//    public UserDetailsService userDetailsService() {
 //
-//        UserDetails admin = User.withUsername("admin")
-//                .password(passwordEncoder.encode("admin"))
-//                .roles("USER", "ADMIN")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(user, admin);
-    }
+//        return myUserDetailService ;
+//    }
 
 
     @Bean
@@ -54,7 +42,6 @@ public class SecurityConfig {
 
         return  http.authorizeHttpRequests(request -> {
                         request.requestMatchers("/api/v1/home","api/v1/user/register").permitAll();
-//                        request.requestMatchers("api/v1/user/**").hasRole("USER");
                     request.requestMatchers("api/v1/admin/**").hasRole("ADMIN");
                     request.anyRequest().authenticated();
                    })
